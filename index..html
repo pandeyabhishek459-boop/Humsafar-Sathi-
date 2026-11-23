@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e11d48">
+<meta name="description" content="Humsafar-Sathi - Apna Humsafar Dhundho">
+<link rel="manifest" href="./manifest.json">
+<title>Humsafar-Sathi ❤️</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;font-family:system-ui,sans-serif}
+body{margin:0;padding:16px;background:#fff1f2;color:#333}
+.card{max-width:480px;margin:20px auto;background:white;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.09)}
+h1{text-align:center;color:#e11d48;margin:0}
+.subtitle{text-align:center;color:#777}
+input,select,textarea{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:12px;font-size:16px;background:white}
+textarea{min-height:90px}
+button{width:100%;padding:15px;margin-top:12px;background:#e11d48;color:white;border:0;border-radius:12px;font-size:17px;font-weight:bold}
+button:disabled{opacity:.6}
+.notice{background:#fff7ed;padding:12px;border-radius:10px;font-size:13px;color:#854d0e;line-height:1.6}
+#msg{text-align:center;font-weight:600;overflow-wrap:anywhere}
+footer{text-align:center;color:#999;font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Humsafar-Sathi ❤️</h1>
+<p class="subtitle">Apna Humsafar Dhundho</p>
+
+<div class="notice">
+यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है। आपकी निजी जानकारी सार्वजनिक प्रोफाइल में नहीं दिखाई जाएगी।
+</div>
+
+<form id="registrationForm">
+<input id="Name" placeholder="आपका पूरा नाम *" maxlength="80" required>
+<input id="Age" type="number" placeholder="उम्र (18 वर्ष या अधिक) *" min="18" max="100" required>
+
+<select id="Gender" required>
+<option value="">Gender चुनें *</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select>
+
+<input id="Mobile" type="tel" placeholder="10 अंकों का मोबाइल नंबर *" inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}" required>
+<input id="City" placeholder="शहर / जिला" maxlength="80">
+<textarea id="Bio" placeholder="अपने बारे में बताइए..." maxlength="500"></textarea>
+
+<button id="registerBtn" type="submit">❤️ Register करें</button>
+</form>
+
+<p id="msg" role="status" aria-live="polite"></p>
+
+<footer>
+Humsafar-Sathi ❤️<br>
+आपका विश्वास, हमारी प्राथमिकता।
+</footer>
+</div>
+
+<script>
+const SUPABASE_URL = "https://ceypezgfvnntmzoqqmks.supabase.co";
+const SUPABASE_KEY = "sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const form = document.getElementById("registrationForm");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("registerBtn");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const Name = document.getElementById("Name").value.trim();
+  const Age = Number(document.getElementById("Age").value);
+  const Gender = document.getElementById("Gender").value;
+  const Mobile = document.getElementById("Mobile").value.trim();
+  const City = document.getElementById("City").value.trim();
+  const Bio = document.getElementById("Bio").value.trim();
+
+  if (!Name || !Gender || !Mobile || !Age) {
+    msg.textContent = "कृपया सभी जरूरी जानकारी भरें।";
+    return;
+  }
+
+  if (Age < 18 || Age > 100) {
+    msg.textContent = "यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के लिए है।";
+    return;
+  }
+
+  if (!/^[6-9][0-9]{9}$/.test(Mobile)) {
+    msg.textContent = "सही 10 अंकों का मोबाइल नंबर डालें।";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "कृपया प्रतीक्षा करें...";
+  msg.textContent = "आपका फॉर्म जमा हो रहा है...";
+
+  try {
+    const { error } = await supabaseClient
+      .from("registrations")
+      .insert([{
+        Name,
+        Age,
+        Gender,
+        Mobile,
+        City,
+        Bio
+      }]);
+
+    if (error) throw error;
+
+    msg.textContent = "✅ आपका रजिस्ट्रेशन सफलतापूर्वक जमा हो गया। धन्यवाद!";
+    form.reset();
+
+  } catch (error) {
+    console.error(error);
+    msg.textContent = "रजिस्ट्रेशन नहीं हो पाया। कृपया दोबारा कोशिश करें।";
+
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "❤️ Register करें";
+  }
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(error => console.log("Service Worker Error:", error));
+  });
+}
+</script>
+</body>
+</html>
