@@ -10,136 +10,493 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="stylesheet" href="./style.css">
 
-<title>Humsafar-Sathi ❤️</title>
+<title>Humsafar-Sathi тЭдя╕П</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;font-family:system-ui,sans-serif}
-body{margin:0;padding:16px;background:#fff1f2;color:#333}
-.card{max-width:480px;margin:20px auto;background:white;border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.09)}
-h1{text-align:center;color:#e11d48;margin:0}
-.subtitle{text-align:center;color:#777}
-input,select,textarea{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:12px;font-size:16px;background:white}
-textarea{min-height:90px}
-button{width:100%;padding:15px;margin-top:12px;background:#e11d48;color:white;border:0;border-radius:12px;font-size:17px;font-weight:bold}
-button:disabled{opacity:.6}
-.notice{background:#fff7ed;padding:12px;border-radius:10px;font-size:13px;color:#854d0e;line-height:1.6}
-#msg{text-align:center;font-weight:600;overflow-wrap:anywhere}
-footer{text-align:center;color:#999;font-size:12px;margin-top:22px}
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: #fff1f2;
+  color: #333;
+}
+
+.card {
+  max-width: 480px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.09);
+}
+
+h1 {
+  text-align: center;
+  color: #e11d48;
+  margin: 0;
+}
+
+.subtitle {
+  text-align: center;
+  color: #777;
+}
+
+h3 {
+  color: #e11d48;
+  margin-top: 22px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  background: white;
+}
+
+textarea {
+  min-height: 90px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  background: #e11d48;
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .6;
+}
+
+.notice {
+  background: #fff7ed;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #854d0e;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.step {
+  background: #ffe4e6;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  color: #be123c;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+#msg {
+  text-align: center;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.hidden {
+  display: none;
+}
+
+.back-btn {
+  background: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin-top: 22px;
+}
 </style>
 </head>
 
 <body>
+
 <div class="card">
-<h1>Humsafar-Sathi ❤️</h1>
+
+<h1>Humsafar-Sathi тЭдя╕П</h1>
 <p class="subtitle">Apna Humsafar Dhundho</p>
 
 <div class="notice">
-यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है। आपकी निजी जानकारी सार्वजनिक प्रोफाइल में नहीं दिखाई जाएगी।
+рдпрд╣ рд╕реЗрд╡рд╛ рдХреЗрд╡рд▓ 18 рд╡рд░реНрд╖ рдпрд╛ рдЙрд╕рд╕реЗ рдЕрдзрд┐рдХ рдЙрдореНрд░ рдХреЗ рд╡рдпрд╕реНрдХреЛрдВ рдХреЗ рд▓рд┐рдП рд╣реИред
+рдЖрдкрдХреА рдирд┐рдЬреА рдЬрд╛рдирдХрд╛рд░реА рдХреА рд╕реБрд░рдХреНрд╖рд╛ рд╣рдорд╛рд░реА рдкреНрд░рд╛рдердорд┐рдХрддрд╛ рд╣реИред
 </div>
 
-<form id="registrationForm">
-<input id="Name" placeholder="आपका पूरा नाम *" maxlength="80" required>
-<input id="Age" type="number" placeholder="उम्र (18 वर्ष या अधिक) *" min="18" max="100" required>
+<!-- STEP 1 -->
 
-<select id="Gender" required>
-<option value="">Gender चुनें *</option>
+<div id="step1">
+
+<div class="step">рдЪрд░рдг 1 : Basic Registration</div>
+
+<form id="registrationForm">
+
+<input id="name"
+placeholder="рдЖрдкрдХрд╛ рдкреВрд░рд╛ рдирд╛рдо *"
+maxlength="80" required>
+
+<input id="age"
+type="number"
+placeholder="рдЙрдореНрд░ (18 рд╡рд░реНрд╖ рдпрд╛ рдЕрдзрд┐рдХ) *"
+min="18" max="100" required>
+
+<select id="gender" required>
+<option value="">Gender рдЪреБрдиреЗрдВ *</option>
 <option value="Male">Male</option>
 <option value="Female">Female</option>
 <option value="Other">Other</option>
 </select>
 
-<input id="Mobile" type="tel" placeholder="10 अंकों का मोबाइल नंबर *" inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}" required>
-<input id="City" placeholder="शहर / जिला" maxlength="80">
-<textarea id="Bio" placeholder="अपने बारे में बताइए..." maxlength="500"></textarea>
+<input id="mobile"
+type="tel"
+placeholder="10 рдЕрдВрдХреЛрдВ рдХрд╛ рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░ *"
+inputmode="numeric"
+maxlength="10"
+pattern="[6-9][0-9]{9}"
+required>
 
-<button id="registerBtn" type="submit">❤️ Register करें</button>
+<input id="city"
+placeholder="рд╢рд╣рд░ / рдЬрд┐рд▓рд╛"
+maxlength="80">
+
+<textarea id="bio"
+placeholder="рдЕрдкрдиреЗ рдмрд╛рд░реЗ рдореЗрдВ рдмрддрд╛рдЗрдП..."
+maxlength="500"></textarea>
+
+<button id="registerBtn" type="submit">
+тЭдя╕П Register рдХрд░реЗрдВ
+</button>
+
 </form>
+</div>
+
+<!-- STEP 2 -->
+
+<div id="step2" class="hidden">
+
+<div class="step">рдЪрд░рдг 2 : Complete Profile</div>
+
+<form id="profileForm">
+
+<h3>ЁЯОУ рд╢рд┐рдХреНрд╖рд╛ рдФрд░ рдХрд░рд┐рдпрд░</h3>
+
+<input id="education"
+placeholder="рд╢реИрдХреНрд╖рдгрд┐рдХ рдпреЛрдЧреНрдпрддрд╛">
+
+<input id="occupation"
+placeholder="рдиреМрдХрд░реА / рд╡реНрдпрд╡рд╕рд╛рдп">
+
+<input id="annual_income"
+placeholder="рд╡рд╛рд░реНрд╖рд┐рдХ рдЖрдп (рд╡реИрдХрд▓реНрдкрд┐рдХ)">
+
+<select id="marital_status">
+<option value="">рд╡реИрд╡рд╛рд╣рд┐рдХ рд╕реНрдерд┐рддрд┐ рдЪреБрдиреЗрдВ</option>
+<option value="Never Married">рдЕрд╡рд┐рд╡рд╛рд╣рд┐рдд</option>
+<option value="Divorced">рддрд▓рд╛рдХрд╢реБрджрд╛</option>
+<option value="Widowed">рд╡рд┐рдзрд╡рд╛ / рд╡рд┐рдзреБрд░</option>
+<option value="Other">рдЕрдиреНрдп</option>
+</select>
+
+<h3>ЁЯПа рдкрд░рд┐рд╡рд╛рд░ рдХреА рдЬрд╛рдирдХрд╛рд░реА</h3>
+
+<input id="father_occupation"
+placeholder="рдкрд┐рддрд╛ рдХрд╛ рд╡реНрдпрд╡рд╕рд╛рдп">
+
+<input id="mother_occupation"
+placeholder="рдорд╛рддрд╛ рдХрд╛ рд╡реНрдпрд╡рд╕рд╛рдп">
+
+<input id="siblings"
+placeholder="рднрд╛рдИ-рдмрд╣рдиреЛрдВ рдХреА рдЬрд╛рдирдХрд╛рд░реА">
+
+<h3>ЁЯУН рдирд┐рд╡рд╛рд╕ рдХреА рдЬрд╛рдирдХрд╛рд░реА</h3>
+
+<input id="state"
+placeholder="рд░рд╛рдЬреНрдп">
+
+<h3>ЁЯУ╖ рдкреНрд░реЛрдлрд╛рдЗрд▓ рдлреЛрдЯреЛ</h3>
+
+<input id="profile_photo"
+type="url"
+placeholder="рдлреЛрдЯреЛ рдХрд╛ URL (рдЕрднреА рд╡реИрдХрд▓реНрдкрд┐рдХ)">
+
+<div class="notice">
+рдЕрдкрдиреА рдлреЛрдЯреЛ рдХрд╛ рд╕рд╛рд░реНрд╡рдЬрдирд┐рдХ URL рд╣реА рджреЗрдВред рдирд┐рдЬреА рдлреЛрдЯреЛ рдХрд╛ рд▓рд┐рдВрдХ рдпрд╣рд╛рдБ рди рдбрд╛рд▓реЗрдВред
+рдлреЛрдЯреЛ рдЕрдкрд▓реЛрдб рдХреА рд╕реБрд╡рд┐рдзрд╛ Storage рд╕реЗрдЯрдЕрдк рдХреЗ рдмрд╛рдж рдЬреЛрдбрд╝реЗрдВрдЧреЗред
+</div>
+
+<button id="profileBtn" type="submit">
+тЭдя╕П рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдХрд░реЗрдВ
+</button>
+
+</form>
+
+<button class="back-btn" id="backBtn" type="button">
+рд╡рд╛рдкрд╕ рдЬрд╛рдПрдБ
+</button>
+
+</div>
 
 <p id="msg" role="status" aria-live="polite"></p>
 
 <footer>
-Humsafar-Sathi ❤️<br>
-आपका विश्वास, हमारी प्राथमिकता।
+Humsafar-Sathi тЭдя╕П<br>
+рдЖрдкрдХрд╛ рд╡рд┐рд╢реНрд╡рд╛рд╕, рд╣рдорд╛рд░реА рдкреНрд░рд╛рдердорд┐рдХрддрд╛ред
 </footer>
+
 </div>
 
 <script>
-const SUPABASE_URL = "https://ceypezgfvnntmzoqqmks.supabase.co";
-const SUPABASE_KEY = "sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
 
-const supabaseClient = supabase.createClient(
+// SUPABASE CONNECTION
+
+const SUPABASE_URL =
+"https://ceypezgfvnntmzoqqmks.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
+
+const supabaseClient =
+window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 const form = document.getElementById("registrationForm");
+const profileForm = document.getElementById("profileForm");
+
 const msg = document.getElementById("msg");
-const btn = document.getElementById("registerBtn");
+
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+
+const registerBtn = document.getElementById("registerBtn");
+const profileBtn = document.getElementById("profileBtn");
+
+let registrationId = null;
+
+// STEP 1: BASIC REGISTRATION
 
 form.addEventListener("submit", async function(e) {
+
   e.preventDefault();
 
-  const Name = document.getElementById("Name").value.trim();
-  const Age = Number(document.getElementById("Age").value);
-  const Gender = document.getElementById("Gender").value;
-  const Mobile = document.getElementById("Mobile").value.trim();
-  const City = document.getElementById("City").value.trim();
-  const Bio = document.getElementById("Bio").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const age = Number(document.getElementById("age").value);
+  const gender = document.getElementById("gender").value;
+  const mobile = document.getElementById("mobile").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const bio = document.getElementById("bio").value.trim();
 
-  if (!Name || !Gender || !Mobile || !Age) {
-    msg.textContent = "कृपया सभी जरूरी जानकारी भरें।";
+  if (!name || !gender || !mobile || !age) {
+    msg.textContent = "рдХреГрдкрдпрд╛ рдЬрд░реВрд░реА рдЬрд╛рдирдХрд╛рд░реА рднрд░реЗрдВред";
     return;
   }
 
-  if (Age < 18 || Age > 100) {
-    msg.textContent = "यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के लिए है।";
+  if (age < 18 || age > 100) {
+    msg.textContent = "рдпрд╣ рд╕реЗрд╡рд╛ рдХреЗрд╡рд▓ 18 рд╡рд░реНрд╖ рдпрд╛ рдЙрд╕рд╕реЗ рдЕрдзрд┐рдХ рдЙрдореНрд░ рдХреЗ рд▓рд┐рдП рд╣реИред";
     return;
   }
 
-  if (!/^[6-9][0-9]{9}$/.test(Mobile)) {
-    msg.textContent = "सही 10 अंकों का मोबाइल नंबर डालें।";
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    msg.textContent = "рд╕рд╣реА 10 рдЕрдВрдХреЛрдВ рдХрд╛ рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░ рдбрд╛рд▓реЗрдВред";
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = "कृपया प्रतीक्षा करें...";
-  msg.textContent = "आपका फॉर्म जमा हो रहा है...";
+  registerBtn.disabled = true;
+  registerBtn.textContent = "рдХреГрдкрдпрд╛ рдкреНрд░рддреАрдХреНрд╖рд╛ рдХрд░реЗрдВ...";
+  msg.textContent = "рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╕реЗрд╡ рд╣реЛ рд░рд╣рд╛ рд╣реИ...";
 
   try {
-    const { error } = await supabaseClient
+
+    const { data, error } = await supabaseClient
       .from("registrations")
       .insert([{
-        Name,
-        Age,
-        Gender,
-        Mobile,
-        City,
-        Bio
-      }]);
+        name: name,
+        age: age,
+        gender: gender,
+        mobile: mobile,
+        city: city,
+        bio: bio,
+        profile_status: "pending"
+      }])
+      .select("id")
+      .single();
 
     if (error) throw error;
 
-    msg.textContent = "✅ आपका रजिस्ट्रेशन सफलतापूर्वक जमा हो गया। धन्यवाद!";
-    form.reset();
+    registrationId = data.id;
 
-  } catch (error) {
+    step1.classList.add("hidden");
+    step2.classList.remove("hidden");
+
+    msg.textContent =
+      "рдЖрдкрдХрд╛ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╣реЛ рдЧрдпрд╛ред рдЕрдм рдкреВрд░реА рдкреНрд░реЛрдлрд╛рдЗрд▓ рднрд░реЗрдВред";
+
+    window.scrollTo(0, 0);
+
+  } catch(error) {
+
     console.error(error);
-    msg.textContent = "रजिस्ट्रेशन नहीं हो पाया। कृपया दोबारा कोशिश करें।";
+
+    msg.textContent =
+      "рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдирд╣реАрдВ рд╣реЛ рдкрд╛рдпрд╛ред рдХреГрдкрдпрд╛ рджреЛрдмрд╛рд░рд╛ рдХреЛрд╢рд┐рд╢ рдХрд░реЗрдВред";
 
   } finally {
-    btn.disabled = false;
-    btn.textContent = "❤️ Register करें";
+
+    registerBtn.disabled = false;
+    registerBtn.textContent = "тЭдя╕П Register рдХрд░реЗрдВ";
+
   }
+
 });
 
+// STEP 2: COMPLETE PROFILE
+
+profileForm.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  if (!registrationId) {
+    msg.textContent = "рдкрд╣рд▓реЗ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдкреВрд░рд╛ рдХрд░реЗрдВред";
+    return;
+  }
+
+  const education =
+    document.getElementById("education").value.trim();
+
+  const occupation =
+    document.getElementById("occupation").value.trim();
+
+  const annual_income =
+    document.getElementById("annual_income").value.trim();
+
+  const marital_status =
+    document.getElementById("marital_status").value;
+
+  const father_occupation =
+    document.getElementById("father_occupation").value.trim();
+
+  const mother_occupation =
+    document.getElementById("mother_occupation").value.trim();
+
+  const siblings =
+    document.getElementById("siblings").value.trim();
+
+  const state =
+    document.getElementById("state").value.trim();
+
+  const profile_photo =
+    document.getElementById("profile_photo").value.trim();
+
+  if (profile_photo) {
+    try {
+      const photoURL = new URL(profile_photo);
+
+      if (photoURL.protocol !== "https:") {
+        throw new Error("HTTPS URL required");
+      }
+
+    } catch(error) {
+      msg.textContent = "рдХреГрдкрдпрд╛ рд╕рд╣реА HTTPS рдлреЛрдЯреЛ URL рдбрд╛рд▓реЗрдВред";
+      return;
+    }
+  }
+
+  profileBtn.disabled = true;
+  profileBtn.textContent = "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рд╣реЛ рд░рд╣реА рд╣реИ...";
+  msg.textContent = "рдХреГрдкрдпрд╛ рдкреНрд░рддреАрдХреНрд╖рд╛ рдХрд░реЗрдВ...";
+
+  try {
+
+    const { error } = await supabaseClient
+      .from("registrations")
+      .update({
+        education: education,
+        occupation: occupation,
+        annual_income: annual_income,
+        marital_status: marital_status,
+        father_occupation: father_occupation,
+        mother_occupation: mother_occupation,
+        siblings: siblings,
+        state: state,
+        profile_photo: profile_photo,
+        profile_status: "pending"
+      })
+      .eq("id", registrationId);
+
+    if (error) throw error;
+
+    msg.textContent =
+      "ЁЯОЙ рдмрдзрд╛рдИ рд╣реЛ! рдЖрдкрдХрд╛ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдФрд░ рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕рдлрд▓рддрд╛рдкреВрд░реНрд╡рдХ рд╕реЗрд╡ рд╣реЛ рдЧрдпрд╛ред Admin Approval рдХреЗ рдмрд╛рдж рдкреНрд░реЛрдлрд╛рдЗрд▓ рджрд┐рдЦрд╛рдИ рдЬрд╛рдПрдЧреАред";
+
+    profileForm.reset();
+    form.reset();
+
+    registrationId = null;
+
+    profileBtn.textContent = "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рд╣реЛ рдЧрдИ";
+
+    profileBtn.disabled = true;
+
+  } catch(error) {
+
+    console.error(error);
+
+    msg.textContent =
+      "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдирд╣реАрдВ рд╣реБрдИред рдЖрдкрдХрд╛ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╕реБрд░рдХреНрд╖рд┐рдд рд╣реИред рджреЛрдмрд╛рд░рд╛ рдХреЛрд╢рд┐рд╢ рдХрд░реЗрдВред";
+
+    profileBtn.disabled = false;
+    profileBtn.textContent = "тЭдя╕П рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдХрд░реЗрдВ";
+
+  }
+
+});
+
+// BACK BUTTON
+
+document.getElementById("backBtn").addEventListener("click", function() {
+
+  step2.classList.add("hidden");
+  step1.classList.remove("hidden");
+
+  msg.textContent =
+    "рдЖрдк рд╡рд╛рдкрд╕ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдкрд░ рдЖ рдЧрдП рд╣реИрдВред";
+
+  window.scrollTo(0, 0);
+
+});
+
+// SERVICE WORKER
+
 if ("serviceWorker" in navigator) {
+
   window.addEventListener("load", () => {
+
     navigator.serviceWorker.register("./sw.js")
-      .catch(error => console.log("Service Worker Error:", error));
+      .catch(error =>
+        console.log("Service Worker Error:", error)
+      );
+
   });
+
 }
+
 </script>
+
 </body>
 </html>
