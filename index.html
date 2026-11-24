@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#65152e">
 <meta name="description" content="Humsafar Sathi - Apna Humsafar Dhundho">
+<link rel="canonical" href="https://humsafarsathi.com/">
 
 <title>Humsafar Sathi | आपका अपना हमसफ़र</title>
 
@@ -20,9 +21,7 @@
   --pink: #f9e9e9;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -44,9 +43,7 @@ header {
   letter-spacing: .5px;
 }
 
-.logo span {
-  color: #e9c783;
-}
+.logo span { color: #e9c783; }
 
 .tagline {
   color: #f7e5d0;
@@ -144,6 +141,13 @@ textarea {
   margin: 15px 0;
 }
 
+.small-help {
+  color: #80656b;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 5px;
+}
+
 button {
   width: 100%;
   padding: 16px;
@@ -179,26 +183,13 @@ footer {
   line-height: 1.9;
 }
 
-footer strong {
-  color: #e9c783;
-}
+footer strong { color: #e9c783; }
 
 @media(max-width:480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .logo {
-    font-size: 29px;
-  }
-
-  .card {
-    padding: 17px;
-  }
-
-  .hero h1 {
-    font-size: 23px;
-  }
+  .grid { grid-template-columns: 1fr; }
+  .logo { font-size: 29px; }
+  .card { padding: 17px; }
+  .hero h1 { font-size: 23px; }
 }
 </style>
 </head>
@@ -225,17 +216,17 @@ footer strong {
 <div class="card">
   <h2 class="section-title">♥ व्यक्तिगत जानकारी</h2>
 
-  <label>पूरा नाम *</label>
+  <label for="name">पूरा नाम *</label>
   <input id="name" maxlength="80" required placeholder="अपना पूरा नाम लिखें">
 
   <div class="grid">
     <div>
-      <label>उम्र *</label>
+      <label for="age">उम्र *</label>
       <input id="age" type="number" min="18" max="100" required placeholder="उम्र">
     </div>
 
     <div>
-      <label>लिंग *</label>
+      <label for="gender">लिंग *</label>
       <select id="gender" required>
         <option value="">चुनें</option>
         <option value="Male">पुरुष</option>
@@ -245,15 +236,32 @@ footer strong {
     </div>
   </div>
 
-  <label>मोबाइल नंबर *</label>
-  <input id="mobile" type="tel" inputmode="numeric"
-    maxlength="10" pattern="[6-9][0-9]{9}"
-    required placeholder="10 अंकों का मोबाइल नंबर">
+  <label for="mobile">मोबाइल नंबर *</label>
+  <input id="mobile" type="tel" inputmode="tel"
+    maxlength="16" required placeholder="10 अंकों का भारतीय नंबर">
+  <div class="small-help">अभी मोबाइल नंबर OTP से सत्यापित नहीं होता।</div>
 
-  <label>शहर / जिला</label>
+  <label for="country">देश</label>
+  <select id="country">
+    <option value="India">भारत</option>
+    <option value="Nepal">नेपाल</option>
+    <option value="UAE">संयुक्त अरब अमीरात</option>
+    <option value="Saudi Arabia">सऊदी अरब</option>
+    <option value="United States">अमेरिका</option>
+    <option value="United Kingdom">ब्रिटेन</option>
+    <option value="Canada">कनाडा</option>
+    <option value="Australia">ऑस्ट्रेलिया</option>
+    <option value="Singapore">सिंगापुर</option>
+    <option value="Other">अन्य</option>
+  </select>
+
+  <label for="state">राज्य / प्रांत</label>
+  <input id="state" maxlength="80" placeholder="अपना राज्य या प्रांत">
+
+  <label for="city">शहर / जिला</label>
   <input id="city" maxlength="80" placeholder="अपना शहर या जिला">
 
-  <label>अपने बारे में</label>
+  <label for="bio">अपने बारे में</label>
   <textarea id="bio" maxlength="500"
     placeholder="अपने व्यक्तित्व और रुचियों के बारे में बताएं"></textarea>
 </div>
@@ -261,16 +269,66 @@ footer strong {
 <div class="card">
   <h2 class="section-title">शिक्षा और करियर</h2>
 
-  <label>शैक्षणिक योग्यता</label>
-  <input id="education" placeholder="जैसे Graduation, Post Graduation">
+  <label for="education">शैक्षणिक योग्यता</label>
+  <select id="education">
+    <option value="">चुनें</option>
+    <option value="10th">10वीं</option>
+    <option value="12th">12वीं</option>
+    <option value="Diploma">डिप्लोमा</option>
+    <option value="ITI">ITI</option>
+    <option value="Graduation">स्नातक (Graduation)</option>
+    <option value="Post Graduation">स्नातकोत्तर (Post Graduation)</option>
+    <option value="B.Tech/Engineering">B.Tech / Engineering</option>
+    <option value="Medical">मेडिकल</option>
+    <option value="PhD">PhD</option>
+    <option value="Other">अन्य</option>
+  </select>
 
-  <label>पेशा / व्यवसाय</label>
-  <input id="occupation" placeholder="अपना पेशा लिखें">
+  <label for="occupation">पेशा / व्यवसाय</label>
+  <select id="occupation">
+    <option value="">चुनें</option>
+    <optgroup label="सरकारी क्षेत्र">
+      <option value="Teacher">शिक्षक</option>
+      <option value="Police/Defence">पुलिस / रक्षा सेवा</option>
+      <option value="Railway">रेलवे</option>
+      <option value="Banking">बैंकिंग</option>
+      <option value="Civil Services">सिविल सेवा</option>
+      <option value="Other Government Job">अन्य सरकारी नौकरी</option>
+    </optgroup>
+    <optgroup label="निजी क्षेत्र">
+      <option value="IT/Software">IT / सॉफ्टवेयर</option>
+      <option value="Company/MNC">कंपनी / MNC</option>
+      <option value="Education">शिक्षा</option>
+      <option value="Healthcare">स्वास्थ्य सेवा</option>
+      <option value="Other Private Job">अन्य निजी नौकरी</option>
+    </optgroup>
+    <optgroup label="व्यवसाय और अन्य">
+      <option value="Retail/Wholesale Business">खुदरा / थोक व्यापार</option>
+      <option value="Manufacturing Business">निर्माण व्यवसाय</option>
+      <option value="Online Business">ऑनलाइन व्यवसाय</option>
+      <option value="Agriculture">कृषि</option>
+      <option value="Self Employed">स्वरोजगार</option>
+      <option value="Professional">पेशेवर सेवा</option>
+      <option value="Student">विद्यार्थी</option>
+      <option value="Homemaker">गृह प्रबंधन</option>
+      <option value="Other">अन्य</option>
+    </optgroup>
+  </select>
 
-  <label>वार्षिक आय</label>
-  <input id="annual_income" maxlength="50" placeholder="वैकल्पिक">
+  <label for="annual_income">वार्षिक आय</label>
+  <select id="annual_income">
+    <option value="">चुनें / बताना नहीं चाहते</option>
+    <option value="Below 2 Lakh">₹2 लाख से कम</option>
+    <option value="2-5 Lakh">₹2–5 लाख</option>
+    <option value="5-10 Lakh">₹5–10 लाख</option>
+    <option value="10-15 Lakh">₹10–15 लाख</option>
+    <option value="15-25 Lakh">₹15–25 लाख</option>
+    <option value="25-50 Lakh">₹25–50 लाख</option>
+    <option value="Above 50 Lakh">₹50 लाख से अधिक</option>
+    <option value="Prefer not to say">नहीं बताना चाहते</option>
+  </select>
 
-  <label>वैवाहिक स्थिति</label>
+  <label for="marital_status">वैवाहिक स्थिति</label>
   <select id="marital_status">
     <option value="">चुनें</option>
     <option value="Never Married">अविवाहित</option>
@@ -281,25 +339,129 @@ footer strong {
 </div>
 
 <div class="card">
-  <h2 class="section-title">परिवार की जानकारी</h2>
+  <h2 class="section-title">धर्म और समुदाय की जानकारी</h2>
 
-  <label>पिता का व्यवसाय</label>
-  <input id="father_occupation" placeholder="पिता का व्यवसाय">
+  <div class="notice">
+    ये सभी जानकारी वैकल्पिक हैं। आप चाहें तो इन्हें खाली छोड़ सकते हैं।
+  </div>
 
-  <label>माता का व्यवसाय</label>
-  <input id="mother_occupation" placeholder="माता का व्यवसाय">
+  <label for="religion">धर्म</label>
+  <select id="religion">
+    <option value="">चुनें / बताना नहीं चाहते</option>
+    <option value="Hindu">हिंदू</option>
+    <option value="Muslim">मुस्लिम</option>
+    <option value="Christian">ईसाई</option>
+    <option value="Sikh">सिख</option>
+    <option value="Buddhist">बौद्ध</option>
+    <option value="Jain">जैन</option>
+    <option value="Other">अन्य</option>
+    <option value="Prefer not to say">नहीं बताना चाहते</option>
+  </select>
 
-  <label>भाई-बहनों की जानकारी</label>
-  <input id="siblings" placeholder="भाई-बहनों की जानकारी">
+  <label for="caste">जाति / समुदाय</label>
+  <input id="caste" maxlength="100" placeholder="वैकल्पिक">
 
-  <label>राज्य</label>
-  <input id="state" placeholder="अपना राज्य लिखें">
+  <label for="sub_caste">उपजाति</label>
+  <input id="sub_caste" maxlength="100" placeholder="वैकल्पिक">
+
+  <label for="gotra">गोत्र</label>
+  <input id="gotra" maxlength="100" placeholder="वैकल्पिक">
 </div>
 
 <div class="card">
-  <h2 class="section-title">प्रोफाइल फोटो</h2>
+  <h2 class="section-title">परिवार की जानकारी</h2>
 
-  <label>फोटो का HTTPS URL</label>
+  <label for="father_occupation">पिता का व्यवसाय</label>
+  <input id="father_occupation" maxlength="100" placeholder="पिता का व्यवसाय">
+
+  <label for="mother_occupation">माता का व्यवसाय</label>
+  <input id="mother_occupation" maxlength="100" placeholder="माता का व्यवसाय">
+
+  <label for="siblings">भाई-बहनों की जानकारी</label>
+  <input id="siblings" maxlength="150" placeholder="भाई-बहनों की जानकारी">
+</div>
+
+<div class="card">
+  <h2 class="section-title">♥ जीवनसाथी के लिए आपकी पसंद</h2>
+
+  <div class="notice">
+    अपनी पसंद बताइए। ये जानकारी आपकी प्रोफाइल के साथ जमा होगी। अभी इससे अपने-आप मैचिंग शुरू नहीं होगी।
+  </div>
+
+  <div class="grid">
+    <div>
+      <label for="preferred_age_min">न्यूनतम उम्र</label>
+      <input id="preferred_age_min" type="number" min="18" max="100" placeholder="जैसे 25">
+    </div>
+    <div>
+      <label for="preferred_age_max">अधिकतम उम्र</label>
+      <input id="preferred_age_max" type="number" min="18" max="100" placeholder="जैसे 32">
+    </div>
+  </div>
+
+  <label for="preferred_marital_status">पसंदीदा वैवाहिक स्थिति</label>
+  <select id="preferred_marital_status">
+    <option value="">कोई विशेष पसंद नहीं</option>
+    <option value="Never Married">अविवाहित</option>
+    <option value="Divorced">तलाकशुदा</option>
+    <option value="Widowed">विधवा / विधुर</option>
+    <option value="Other">अन्य</option>
+  </select>
+
+  <label for="preferred_education">पसंदीदा शिक्षा</label>
+  <select id="preferred_education">
+    <option value="">कोई विशेष पसंद नहीं</option>
+    <option value="10th">10वीं</option>
+    <option value="12th">12वीं</option>
+    <option value="Diploma">डिप्लोमा</option>
+    <option value="ITI">ITI</option>
+    <option value="Graduation">स्नातक</option>
+    <option value="Post Graduation">स्नातकोत्तर</option>
+    <option value="B.Tech/Engineering">B.Tech / Engineering</option>
+    <option value="Medical">मेडिकल</option>
+    <option value="PhD">PhD</option>
+    <option value="Other">अन्य</option>
+  </select>
+
+  <label for="preferred_religion">पसंदीदा धर्म</label>
+  <select id="preferred_religion">
+    <option value="">कोई विशेष पसंद नहीं</option>
+    <option value="Hindu">हिंदू</option>
+    <option value="Muslim">मुस्लिम</option>
+    <option value="Christian">ईसाई</option>
+    <option value="Sikh">सिख</option>
+    <option value="Buddhist">बौद्ध</option>
+    <option value="Jain">जैन</option>
+    <option value="Other">अन्य</option>
+  </select>
+
+  <label for="preferred_country">पसंदीदा देश</label>
+  <select id="preferred_country">
+    <option value="">कोई विशेष पसंद नहीं</option>
+    <option value="India">भारत</option>
+    <option value="Nepal">नेपाल</option>
+    <option value="UAE">संयुक्त अरब अमीरात</option>
+    <option value="Saudi Arabia">सऊदी अरब</option>
+    <option value="United States">अमेरिका</option>
+    <option value="United Kingdom">ब्रिटेन</option>
+    <option value="Canada">कनाडा</option>
+    <option value="Australia">ऑस्ट्रेलिया</option>
+    <option value="Singapore">सिंगापुर</option>
+    <option value="Other">अन्य</option>
+  </select>
+
+  <label for="preferred_state">पसंदीदा राज्य / प्रांत</label>
+  <input id="preferred_state" maxlength="80" placeholder="वैकल्पिक">
+
+  <label for="partner_expectations">जीवनसाथी से आपकी अपेक्षाएँ</label>
+  <textarea id="partner_expectations" maxlength="1000"
+    placeholder="अपनी अपेक्षाएँ लिखें"></textarea>
+</div>
+
+<div class="card">
+  <h2 class="section-title">प्रोफाइल फोटो और सहमति</h2>
+
+  <label for="profile_photo">फोटो का HTTPS URL</label>
   <input id="profile_photo" type="url"
     placeholder="https://example.com/photo.jpg">
 
@@ -314,7 +476,7 @@ footer strong {
   <label style="display:flex;gap:10px;align-items:flex-start;font-weight:500">
     <input id="consent" type="checkbox" required
       style="width:19px;height:19px;flex-shrink:0;margin:0">
-    <span>मैं पुष्टि करता/करती हूँ कि मेरी उम्र 18 वर्ष या उससे अधिक है और दी गई जानकारी सही है।</span>
+    <span>मैं पुष्टि करता/करती हूँ कि मेरी उम्र 18 वर्ष या उससे अधिक है और दी गई जानकारी सही है। मैं इसे जमा करने के लिए सहमति देता/देती हूँ।</span>
   </label>
 
   <button type="submit" id="registerBtn">
@@ -334,123 +496,166 @@ footer strong {
 </footer>
 
 <script>
+"use strict";
 
 // SUPABASE CONNECTION
-
 const SUPABASE_URL =
-"https://ceypezgfvnntmzoqqmks.supabase.co";
+  "https://ceypezgfvnntmzoqqmks.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  "sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
 
 const form = document.getElementById("registrationForm");
 const msg = document.getElementById("msg");
 const btn = document.getElementById("registerBtn");
 
-form.addEventListener("submit", async function(e) {
+let supabaseClient = null;
 
+if (window.supabase && window.supabase.createClient) {
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+}
+
+function getValue(id) {
+  return document.getElementById(id).value.trim();
+}
+
+function showMessage(message, color) {
+  msg.textContent = message;
+  msg.style.color = color || "#b42335";
+}
+
+form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const age = Number(document.getElementById("age").value);
-  const mobile = document.getElementById("mobile").value.trim();
+  if (!supabaseClient) {
+    showMessage("डेटाबेस कनेक्शन उपलब्ध नहीं है। पेज दोबारा खोलकर प्रयास करें।");
+    return;
+  }
 
-  if (age < 18 || age > 100) {
-    msg.textContent = "यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है।";
+  const age = Number(getValue("age"));
+  const mobile = getValue("mobile");
+  const minAgeValue = getValue("preferred_age_min");
+  const maxAgeValue = getValue("preferred_age_max");
+  const minAge = minAgeValue === "" ? null : Number(minAgeValue);
+  const maxAge = maxAgeValue === "" ? null : Number(maxAgeValue);
+  const photo = getValue("profile_photo");
+
+  if (!Number.isInteger(age) || age < 18 || age > 100) {
+    showMessage("यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है।");
     return;
   }
 
   if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    msg.textContent = "कृपया सही 10 अंकों का मोबाइल नंबर डालें।";
+    showMessage("कृपया सही 10 अंकों का भारतीय मोबाइल नंबर डालें।");
     return;
   }
 
   if (!document.getElementById("consent").checked) {
-    msg.textContent = "कृपया सहमति वाले बॉक्स पर टिक करें।";
+    showMessage("कृपया सहमति वाले बॉक्स पर टिक करें।");
     return;
   }
 
-  const photo = document.getElementById("profile_photo").value.trim();
+  if (minAge !== null && (!Number.isInteger(minAge) || minAge < 18 || minAge > 100)) {
+    showMessage("न्यूनतम पसंदीदा उम्र 18 से 100 के बीच होनी चाहिए।");
+    return;
+  }
+
+  if (maxAge !== null && (!Number.isInteger(maxAge) || maxAge < 18 || maxAge > 100)) {
+    showMessage("अधिकतम पसंदीदा उम्र 18 से 100 के बीच होनी चाहिए।");
+    return;
+  }
+
+  if (minAge !== null && maxAge !== null && minAge > maxAge) {
+    showMessage("न्यूनतम उम्र अधिकतम उम्र से अधिक नहीं हो सकती।");
+    return;
+  }
 
   if (photo) {
     try {
       const url = new URL(photo);
-      if (url.protocol !== "https:") throw new Error();
+      if (url.protocol !== "https:") throw new Error("HTTPS required");
     } catch {
-      msg.textContent = "कृपया सही HTTPS फोटो लिंक डालें।";
+      showMessage("कृपया सही HTTPS फोटो लिंक डालें।");
       return;
     }
   }
 
   const registration = {
-    name: document.getElementById("name").value.trim(),
+    name: getValue("name"),
     age: age,
-    gender: document.getElementById("gender").value,
+    gender: getValue("gender"),
     mobile: mobile,
-    city: document.getElementById("city").value.trim(),
-    bio: document.getElementById("bio").value.trim(),
-    education: document.getElementById("education").value.trim(),
-    occupation: document.getElementById("occupation").value.trim(),
-    annual_income: document.getElementById("annual_income").value.trim(),
-    marital_status: document.getElementById("marital_status").value,
-    father_occupation: document.getElementById("father_occupation").value.trim(),
-    mother_occupation: document.getElementById("mother_occupation").value.trim(),
-    siblings: document.getElementById("siblings").value.trim(),
-    state: document.getElementById("state").value.trim(),
+    city: getValue("city"),
+    bio: getValue("bio"),
+    education: getValue("education"),
+    occupation: getValue("occupation"),
+    annual_income: getValue("annual_income"),
+    marital_status: getValue("marital_status"),
+    father_occupation: getValue("father_occupation"),
+    mother_occupation: getValue("mother_occupation"),
+    siblings: getValue("siblings"),
+    state: getValue("state"),
     profile_photo: photo,
+
+    country: getValue("country"),
+    religion: getValue("religion"),
+    caste: getValue("caste"),
+    sub_caste: getValue("sub_caste"),
+    gotra: getValue("gotra"),
+
+    preferred_age_min: minAge,
+    preferred_age_max: maxAge,
+    preferred_marital_status: getValue("preferred_marital_status"),
+    preferred_education: getValue("preferred_education"),
+    preferred_religion: getValue("preferred_religion"),
+    preferred_country: getValue("preferred_country"),
+    preferred_state: getValue("preferred_state"),
+    partner_expectations: getValue("partner_expectations"),
+
+    consent: true,
+    consent_at: new Date().toISOString(),
     profile_status: "pending"
   };
 
   btn.disabled = true;
   btn.textContent = "रजिस्ट्रेशन हो रहा है...";
-  msg.textContent = "कृपया प्रतीक्षा करें...";
+  showMessage("कृपया प्रतीक्षा करें...", "#71552e");
 
   try {
-
     const { error } = await supabaseClient
       .from("registrations")
       .insert([registration]);
 
     if (error) throw error;
 
-    msg.textContent =
-      "♥ आपका रजिस्ट्रेशन सफलतापूर्वक जमा हो गया है! Admin Approval के बाद आपकी प्रोफाइल आगे दिखाई जा सकेगी।";
-
-    msg.style.color = "#16834b";
+    showMessage(
+      "♥ आपका रजिस्ट्रेशन सफलतापूर्वक जमा हो गया है! Admin Approval के बाद आपकी प्रोफाइल आगे दिखाई जा सकेगी।",
+      "#16834b"
+    );
 
     form.reset();
 
   } catch(error) {
-
     console.error("Registration Error:", error);
 
-    msg.style.color = "#b42335";
-
     if (error.code === "42501" || error.code === "PGRST301") {
-      msg.textContent =
-        "डेटाबेस की अनुमति में समस्या है। Supabase की RLS Policy जाँचनी होगी।";
+      showMessage("डेटाबेस की अनुमति में समस्या है। Supabase की RLS Policy जाँचनी होगी।");
     } else if (error.code === "23505") {
-      msg.textContent =
-        "यह जानकारी पहले से दर्ज है। कृपया मोबाइल नंबर जाँचें।";
+      showMessage("यह जानकारी पहले से दर्ज है। कृपया विवरण जाँचें।");
+    } else if (error.code === "42703" || error.code === "PGRST204") {
+      showMessage("डेटाबेस में कोई आवश्यक कॉलम नहीं मिला। Supabase के कॉलम जाँचने होंगे।");
     } else {
-      msg.textContent =
-        "रजिस्ट्रेशन नहीं हो पाया। कृपया दोबारा प्रयास करें। Error: " +
-        (error.message || "Unknown error");
+      showMessage("रजिस्ट्रेशन नहीं हो पाया। कृपया दोबारा प्रयास करें।");
     }
 
   } finally {
-
     btn.disabled = false;
     btn.textContent = "♥ रजिस्ट्रेशन करें";
-
   }
-
 });
-
 </script>
 
 </body>
