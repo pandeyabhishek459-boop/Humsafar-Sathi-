@@ -4,261 +4,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#e11d48">
-<meta name="description" content="Humsafar-Sathi - Apna Humsafar Dhundho">
+<meta name="theme-color" content="#65152e">
+<meta name="description" content="Humsafar Sathi - Apna Humsafar Dhundho">
 
-<link rel="manifest" href="./manifest.json">
-<link rel="stylesheet" href="./style.css">
-
-<title>Humsafar-Sathi тЭдя╕П</title>
+<title>Humsafar Sathi | आपका अपना हमसफ़र</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+:root {
+  --maroon: #741b38;
+  --dark: #421020;
+  --gold: #c49a54;
+  --cream: #fffaf2;
+  --pink: #f9e9e9;
+}
+
 * {
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
 }
 
 body {
   margin: 0;
-  padding: 16px;
-  background: #fff1f2;
-  color: #333;
+  font-family: system-ui, sans-serif;
+  background: var(--cream);
+  color: #38262b;
+}
+
+header {
+  background: linear-gradient(135deg,#421020,#8b2948);
+  color: white;
+  text-align: center;
+  padding: 38px 18px 32px;
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.logo span {
+  color: #e9c783;
+}
+
+.tagline {
+  color: #f7e5d0;
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.hero {
+  text-align: center;
+  padding: 32px 18px;
+  background: linear-gradient(180deg,#f8e8e6,#fffaf2);
+}
+
+.hero h1 {
+  color: var(--maroon);
+  font-size: 27px;
+  margin: 0 0 10px;
+}
+
+.hero p {
+  color: #75545c;
+  line-height: 1.8;
+  max-width: 550px;
+  margin: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 18px;
 }
 
 .card {
-  max-width: 480px;
-  margin: 20px auto;
   background: white;
+  border: 1px solid #f0dfd9;
   border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.09);
+  padding: 23px;
+  box-shadow: 0 8px 28px rgba(80,20,40,.07);
+  margin-bottom: 20px;
 }
 
-h1 {
-  text-align: center;
-  color: #e11d48;
-  margin: 0;
+.section-title {
+  color: var(--maroon);
+  font-size: 19px;
+  font-weight: 800;
+  border-bottom: 1px solid #f1e1dc;
+  padding-bottom: 12px;
+  margin: 0 0 17px;
 }
 
-.subtitle {
-  text-align: center;
-  color: #777;
-}
-
-h3 {
-  color: #e11d48;
-  margin-top: 22px;
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 650;
+  margin: 15px 0 6px;
+  color: #583b43;
 }
 
 input, select, textarea {
   width: 100%;
   padding: 14px;
-  margin: 8px 0;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  background: white;
+  border: 1px solid #e7d7d6;
+  border-radius: 11px;
+  background: #fffdfb;
+  font-size: 15px;
+  color: #38262b;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(196,154,84,.12);
 }
 
 textarea {
   min-height: 90px;
+  resize: vertical;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 13px;
+}
+
+.notice {
+  background: #fff7e8;
+  border-left: 4px solid var(--gold);
+  padding: 13px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #71552e;
+  margin: 15px 0;
 }
 
 button {
   width: 100%;
-  padding: 15px;
-  margin-top: 12px;
-  background: #e11d48;
-  color: white;
+  padding: 16px;
   border: 0;
   border-radius: 12px;
+  background: linear-gradient(120deg,#68152f,#a43b59);
+  color: white;
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 750;
   cursor: pointer;
+  margin-top: 18px;
 }
 
 button:disabled {
   opacity: .6;
-}
-
-.notice {
-  background: #fff7ed;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  color: #854d0e;
-  line-height: 1.6;
-  margin: 15px 0;
-}
-
-.step {
-  background: #ffe4e6;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  color: #be123c;
-  font-weight: bold;
-  margin: 15px 0;
+  cursor: not-allowed;
 }
 
 #msg {
   text-align: center;
-  font-weight: 600;
+  padding: 12px;
+  font-weight: 650;
+  line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
-.hidden {
-  display: none;
-}
-
-.back-btn {
-  background: #64748b;
-}
-
 footer {
+  background: #421020;
+  color: #f6e5df;
   text-align: center;
-  color: #999;
-  font-size: 12px;
-  margin-top: 22px;
+  padding: 25px 15px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+footer strong {
+  color: #e9c783;
+}
+
+@media(max-width:480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    font-size: 29px;
+  }
+
+  .card {
+    padding: 17px;
+  }
+
+  .hero h1 {
+    font-size: 23px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<header>
+  <div class="logo">♥ Humsafar <span>Sathi</span></div>
+  <div class="tagline">रिश्तों की नई शुरुआत, विश्वास के साथ</div>
+</header>
 
-<h1>Humsafar-Sathi тЭдя╕П</h1>
-<p class="subtitle">Apna Humsafar Dhundho</p>
+<section class="hero">
+  <h1>आपका अपना हमसफ़र, आपकी अपनी कहानी</h1>
+  <p>
+    एक खूबसूरत रिश्ते की शुरुआत कीजिए।
+    अपनी प्रोफाइल बनाइए और अपने जीवनसाथी की तलाश की ओर पहला कदम बढ़ाइए।
+  </p>
+</section>
 
-<div class="notice">
-рдпрд╣ рд╕реЗрд╡рд╛ рдХреЗрд╡рд▓ 18 рд╡рд░реНрд╖ рдпрд╛ рдЙрд╕рд╕реЗ рдЕрдзрд┐рдХ рдЙрдореНрд░ рдХреЗ рд╡рдпрд╕реНрдХреЛрдВ рдХреЗ рд▓рд┐рдП рд╣реИред
-рдЖрдкрдХреА рдирд┐рдЬреА рдЬрд╛рдирдХрд╛рд░реА рдХреА рд╕реБрд░рдХреНрд╖рд╛ рд╣рдорд╛рд░реА рдкреНрд░рд╛рдердорд┐рдХрддрд╛ рд╣реИред
-</div>
-
-<!-- STEP 1 -->
-
-<div id="step1">
-
-<div class="step">рдЪрд░рдг 1 : Basic Registration</div>
+<main class="container">
 
 <form id="registrationForm">
 
-<input id="name"
-placeholder="рдЖрдкрдХрд╛ рдкреВрд░рд╛ рдирд╛рдо *"
-maxlength="80" required>
+<div class="card">
+  <h2 class="section-title">♥ व्यक्तिगत जानकारी</h2>
 
-<input id="age"
-type="number"
-placeholder="рдЙрдореНрд░ (18 рд╡рд░реНрд╖ рдпрд╛ рдЕрдзрд┐рдХ) *"
-min="18" max="100" required>
+  <label>पूरा नाम *</label>
+  <input id="name" maxlength="80" required placeholder="अपना पूरा नाम लिखें">
 
-<select id="gender" required>
-<option value="">Gender рдЪреБрдиреЗрдВ *</option>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
+  <div class="grid">
+    <div>
+      <label>उम्र *</label>
+      <input id="age" type="number" min="18" max="100" required placeholder="उम्र">
+    </div>
 
-<input id="mobile"
-type="tel"
-placeholder="10 рдЕрдВрдХреЛрдВ рдХрд╛ рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░ *"
-inputmode="numeric"
-maxlength="10"
-pattern="[6-9][0-9]{9}"
-required>
+    <div>
+      <label>लिंग *</label>
+      <select id="gender" required>
+        <option value="">चुनें</option>
+        <option value="Male">पुरुष</option>
+        <option value="Female">महिला</option>
+        <option value="Other">अन्य</option>
+      </select>
+    </div>
+  </div>
 
-<input id="city"
-placeholder="рд╢рд╣рд░ / рдЬрд┐рд▓рд╛"
-maxlength="80">
+  <label>मोबाइल नंबर *</label>
+  <input id="mobile" type="tel" inputmode="numeric"
+    maxlength="10" pattern="[6-9][0-9]{9}"
+    required placeholder="10 अंकों का मोबाइल नंबर">
 
-<textarea id="bio"
-placeholder="рдЕрдкрдиреЗ рдмрд╛рд░реЗ рдореЗрдВ рдмрддрд╛рдЗрдП..."
-maxlength="500"></textarea>
+  <label>शहर / जिला</label>
+  <input id="city" maxlength="80" placeholder="अपना शहर या जिला">
 
-<button id="registerBtn" type="submit">
-тЭдя╕П Register рдХрд░реЗрдВ
-</button>
+  <label>अपने बारे में</label>
+  <textarea id="bio" maxlength="500"
+    placeholder="अपने व्यक्तित्व और रुचियों के बारे में बताएं"></textarea>
+</div>
+
+<div class="card">
+  <h2 class="section-title">शिक्षा और करियर</h2>
+
+  <label>शैक्षणिक योग्यता</label>
+  <input id="education" placeholder="जैसे Graduation, Post Graduation">
+
+  <label>पेशा / व्यवसाय</label>
+  <input id="occupation" placeholder="अपना पेशा लिखें">
+
+  <label>वार्षिक आय</label>
+  <input id="annual_income" maxlength="50" placeholder="वैकल्पिक">
+
+  <label>वैवाहिक स्थिति</label>
+  <select id="marital_status">
+    <option value="">चुनें</option>
+    <option value="Never Married">अविवाहित</option>
+    <option value="Divorced">तलाकशुदा</option>
+    <option value="Widowed">विधवा / विधुर</option>
+    <option value="Other">अन्य</option>
+  </select>
+</div>
+
+<div class="card">
+  <h2 class="section-title">परिवार की जानकारी</h2>
+
+  <label>पिता का व्यवसाय</label>
+  <input id="father_occupation" placeholder="पिता का व्यवसाय">
+
+  <label>माता का व्यवसाय</label>
+  <input id="mother_occupation" placeholder="माता का व्यवसाय">
+
+  <label>भाई-बहनों की जानकारी</label>
+  <input id="siblings" placeholder="भाई-बहनों की जानकारी">
+
+  <label>राज्य</label>
+  <input id="state" placeholder="अपना राज्य लिखें">
+</div>
+
+<div class="card">
+  <h2 class="section-title">प्रोफाइल फोटो</h2>
+
+  <label>फोटो का HTTPS URL</label>
+  <input id="profile_photo" type="url"
+    placeholder="https://example.com/photo.jpg">
+
+  <div class="notice">
+    फोटो लिंक वैकल्पिक है। अभी आप अपनी फोटो का HTTPS लिंक दे सकते हैं। सीधे मोबाइल गैलरी से फोटो अपलोड करने की सुविधा बाद में Storage जोड़कर बनाई जाएगी।
+  </div>
+
+  <div class="notice">
+    यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है। अपनी जानकारी जमा करने से पहले सुनिश्चित करें कि आप इसे साझा करने के लिए सहमत हैं।
+  </div>
+
+  <label style="display:flex;gap:10px;align-items:flex-start;font-weight:500">
+    <input id="consent" type="checkbox" required
+      style="width:19px;height:19px;flex-shrink:0;margin:0">
+    <span>मैं पुष्टि करता/करती हूँ कि मेरी उम्र 18 वर्ष या उससे अधिक है और दी गई जानकारी सही है।</span>
+  </label>
+
+  <button type="submit" id="registerBtn">
+    ♥ रजिस्ट्रेशन करें
+  </button>
+
+  <p id="msg" role="status" aria-live="polite"></p>
+</div>
 
 </form>
-</div>
-
-<!-- STEP 2 -->
-
-<div id="step2" class="hidden">
-
-<div class="step">рдЪрд░рдг 2 : Complete Profile</div>
-
-<form id="profileForm">
-
-<h3>ЁЯОУ рд╢рд┐рдХреНрд╖рд╛ рдФрд░ рдХрд░рд┐рдпрд░</h3>
-
-<input id="education"
-placeholder="рд╢реИрдХреНрд╖рдгрд┐рдХ рдпреЛрдЧреНрдпрддрд╛">
-
-<input id="occupation"
-placeholder="рдиреМрдХрд░реА / рд╡реНрдпрд╡рд╕рд╛рдп">
-
-<input id="annual_income"
-placeholder="рд╡рд╛рд░реНрд╖рд┐рдХ рдЖрдп (рд╡реИрдХрд▓реНрдкрд┐рдХ)">
-
-<select id="marital_status">
-<option value="">рд╡реИрд╡рд╛рд╣рд┐рдХ рд╕реНрдерд┐рддрд┐ рдЪреБрдиреЗрдВ</option>
-<option value="Never Married">рдЕрд╡рд┐рд╡рд╛рд╣рд┐рдд</option>
-<option value="Divorced">рддрд▓рд╛рдХрд╢реБрджрд╛</option>
-<option value="Widowed">рд╡рд┐рдзрд╡рд╛ / рд╡рд┐рдзреБрд░</option>
-<option value="Other">рдЕрдиреНрдп</option>
-</select>
-
-<h3>ЁЯПа рдкрд░рд┐рд╡рд╛рд░ рдХреА рдЬрд╛рдирдХрд╛рд░реА</h3>
-
-<input id="father_occupation"
-placeholder="рдкрд┐рддрд╛ рдХрд╛ рд╡реНрдпрд╡рд╕рд╛рдп">
-
-<input id="mother_occupation"
-placeholder="рдорд╛рддрд╛ рдХрд╛ рд╡реНрдпрд╡рд╕рд╛рдп">
-
-<input id="siblings"
-placeholder="рднрд╛рдИ-рдмрд╣рдиреЛрдВ рдХреА рдЬрд╛рдирдХрд╛рд░реА">
-
-<h3>ЁЯУН рдирд┐рд╡рд╛рд╕ рдХреА рдЬрд╛рдирдХрд╛рд░реА</h3>
-
-<input id="state"
-placeholder="рд░рд╛рдЬреНрдп">
-
-<h3>ЁЯУ╖ рдкреНрд░реЛрдлрд╛рдЗрд▓ рдлреЛрдЯреЛ</h3>
-
-<input id="profile_photo"
-type="url"
-placeholder="рдлреЛрдЯреЛ рдХрд╛ URL (рдЕрднреА рд╡реИрдХрд▓реНрдкрд┐рдХ)">
-
-<div class="notice">
-рдЕрдкрдиреА рдлреЛрдЯреЛ рдХрд╛ рд╕рд╛рд░реНрд╡рдЬрдирд┐рдХ URL рд╣реА рджреЗрдВред рдирд┐рдЬреА рдлреЛрдЯреЛ рдХрд╛ рд▓рд┐рдВрдХ рдпрд╣рд╛рдБ рди рдбрд╛рд▓реЗрдВред
-рдлреЛрдЯреЛ рдЕрдкрд▓реЛрдб рдХреА рд╕реБрд╡рд┐рдзрд╛ Storage рд╕реЗрдЯрдЕрдк рдХреЗ рдмрд╛рдж рдЬреЛрдбрд╝реЗрдВрдЧреЗред
-</div>
-
-<button id="profileBtn" type="submit">
-тЭдя╕П рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдХрд░реЗрдВ
-</button>
-
-</form>
-
-<button class="back-btn" id="backBtn" type="button">
-рд╡рд╛рдкрд╕ рдЬрд╛рдПрдБ
-</button>
-
-</div>
-
-<p id="msg" role="status" aria-live="polite"></p>
+</main>
 
 <footer>
-Humsafar-Sathi тЭдя╕П<br>
-рдЖрдкрдХрд╛ рд╡рд┐рд╢реНрд╡рд╛рд╕, рд╣рдорд╛рд░реА рдкреНрд░рд╛рдердорд┐рдХрддрд╛ред
+  <strong>♥ Humsafar Sathi</strong><br>
+  आपका विश्वास, हमारी प्राथमिकता।<br>
+  © 2026 Humsafar Sathi. All Rights Reserved.
 </footer>
-
-</div>
 
 <script>
 
@@ -270,231 +343,113 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_8xKfxIxchEvGuvw_jo0_9A_BdpO7lBi";
 
-const supabaseClient =
-window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 const form = document.getElementById("registrationForm");
-const profileForm = document.getElementById("profileForm");
-
 const msg = document.getElementById("msg");
-
-const step1 = document.getElementById("step1");
-const step2 = document.getElementById("step2");
-
-const registerBtn = document.getElementById("registerBtn");
-const profileBtn = document.getElementById("profileBtn");
-
-let registrationId = null;
-
-// STEP 1: BASIC REGISTRATION
+const btn = document.getElementById("registerBtn");
 
 form.addEventListener("submit", async function(e) {
 
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
   const age = Number(document.getElementById("age").value);
-  const gender = document.getElementById("gender").value;
   const mobile = document.getElementById("mobile").value.trim();
-  const city = document.getElementById("city").value.trim();
-  const bio = document.getElementById("bio").value.trim();
-
-  if (!name || !gender || !mobile || !age) {
-    msg.textContent = "рдХреГрдкрдпрд╛ рдЬрд░реВрд░реА рдЬрд╛рдирдХрд╛рд░реА рднрд░реЗрдВред";
-    return;
-  }
 
   if (age < 18 || age > 100) {
-    msg.textContent = "рдпрд╣ рд╕реЗрд╡рд╛ рдХреЗрд╡рд▓ 18 рд╡рд░реНрд╖ рдпрд╛ рдЙрд╕рд╕реЗ рдЕрдзрд┐рдХ рдЙрдореНрд░ рдХреЗ рд▓рд┐рдП рд╣реИред";
+    msg.textContent = "यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है।";
     return;
   }
 
   if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    msg.textContent = "рд╕рд╣реА 10 рдЕрдВрдХреЛрдВ рдХрд╛ рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░ рдбрд╛рд▓реЗрдВред";
+    msg.textContent = "कृपया सही 10 अंकों का मोबाइल नंबर डालें।";
     return;
   }
 
-  registerBtn.disabled = true;
-  registerBtn.textContent = "рдХреГрдкрдпрд╛ рдкреНрд░рддреАрдХреНрд╖рд╛ рдХрд░реЗрдВ...";
-  msg.textContent = "рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╕реЗрд╡ рд╣реЛ рд░рд╣рд╛ рд╣реИ...";
-
-  try {
-
-    const { data, error } = await supabaseClient
-      .from("registrations")
-      .insert([{
-        name: name,
-        age: age,
-        gender: gender,
-        mobile: mobile,
-        city: city,
-        bio: bio,
-        profile_status: "pending"
-      }])
-      .select("id")
-      .single();
-
-    if (error) throw error;
-
-    registrationId = data.id;
-
-    step1.classList.add("hidden");
-    step2.classList.remove("hidden");
-
-    msg.textContent =
-      "рдЖрдкрдХрд╛ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╣реЛ рдЧрдпрд╛ред рдЕрдм рдкреВрд░реА рдкреНрд░реЛрдлрд╛рдЗрд▓ рднрд░реЗрдВред";
-
-    window.scrollTo(0, 0);
-
-  } catch(error) {
-
-    console.error(error);
-
-    msg.textContent =
-      "рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдирд╣реАрдВ рд╣реЛ рдкрд╛рдпрд╛ред рдХреГрдкрдпрд╛ рджреЛрдмрд╛рд░рд╛ рдХреЛрд╢рд┐рд╢ рдХрд░реЗрдВред";
-
-  } finally {
-
-    registerBtn.disabled = false;
-    registerBtn.textContent = "тЭдя╕П Register рдХрд░реЗрдВ";
-
-  }
-
-});
-
-// STEP 2: COMPLETE PROFILE
-
-profileForm.addEventListener("submit", async function(e) {
-
-  e.preventDefault();
-
-  if (!registrationId) {
-    msg.textContent = "рдкрд╣рд▓реЗ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдкреВрд░рд╛ рдХрд░реЗрдВред";
+  if (!document.getElementById("consent").checked) {
+    msg.textContent = "कृपया सहमति वाले बॉक्स पर टिक करें।";
     return;
   }
 
-  const education =
-    document.getElementById("education").value.trim();
+  const photo = document.getElementById("profile_photo").value.trim();
 
-  const occupation =
-    document.getElementById("occupation").value.trim();
-
-  const annual_income =
-    document.getElementById("annual_income").value.trim();
-
-  const marital_status =
-    document.getElementById("marital_status").value;
-
-  const father_occupation =
-    document.getElementById("father_occupation").value.trim();
-
-  const mother_occupation =
-    document.getElementById("mother_occupation").value.trim();
-
-  const siblings =
-    document.getElementById("siblings").value.trim();
-
-  const state =
-    document.getElementById("state").value.trim();
-
-  const profile_photo =
-    document.getElementById("profile_photo").value.trim();
-
-  if (profile_photo) {
+  if (photo) {
     try {
-      const photoURL = new URL(profile_photo);
-
-      if (photoURL.protocol !== "https:") {
-        throw new Error("HTTPS URL required");
-      }
-
-    } catch(error) {
-      msg.textContent = "рдХреГрдкрдпрд╛ рд╕рд╣реА HTTPS рдлреЛрдЯреЛ URL рдбрд╛рд▓реЗрдВред";
+      const url = new URL(photo);
+      if (url.protocol !== "https:") throw new Error();
+    } catch {
+      msg.textContent = "कृपया सही HTTPS फोटो लिंक डालें।";
       return;
     }
   }
 
-  profileBtn.disabled = true;
-  profileBtn.textContent = "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рд╣реЛ рд░рд╣реА рд╣реИ...";
-  msg.textContent = "рдХреГрдкрдпрд╛ рдкреНрд░рддреАрдХреНрд╖рд╛ рдХрд░реЗрдВ...";
+  const registration = {
+    name: document.getElementById("name").value.trim(),
+    age: age,
+    gender: document.getElementById("gender").value,
+    mobile: mobile,
+    city: document.getElementById("city").value.trim(),
+    bio: document.getElementById("bio").value.trim(),
+    education: document.getElementById("education").value.trim(),
+    occupation: document.getElementById("occupation").value.trim(),
+    annual_income: document.getElementById("annual_income").value.trim(),
+    marital_status: document.getElementById("marital_status").value,
+    father_occupation: document.getElementById("father_occupation").value.trim(),
+    mother_occupation: document.getElementById("mother_occupation").value.trim(),
+    siblings: document.getElementById("siblings").value.trim(),
+    state: document.getElementById("state").value.trim(),
+    profile_photo: photo,
+    profile_status: "pending"
+  };
+
+  btn.disabled = true;
+  btn.textContent = "रजिस्ट्रेशन हो रहा है...";
+  msg.textContent = "कृपया प्रतीक्षा करें...";
 
   try {
 
     const { error } = await supabaseClient
       .from("registrations")
-      .update({
-        education: education,
-        occupation: occupation,
-        annual_income: annual_income,
-        marital_status: marital_status,
-        father_occupation: father_occupation,
-        mother_occupation: mother_occupation,
-        siblings: siblings,
-        state: state,
-        profile_photo: profile_photo,
-        profile_status: "pending"
-      })
-      .eq("id", registrationId);
+      .insert([registration]);
 
     if (error) throw error;
 
     msg.textContent =
-      "ЁЯОЙ рдмрдзрд╛рдИ рд╣реЛ! рдЖрдкрдХрд╛ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдФрд░ рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕рдлрд▓рддрд╛рдкреВрд░реНрд╡рдХ рд╕реЗрд╡ рд╣реЛ рдЧрдпрд╛ред Admin Approval рдХреЗ рдмрд╛рдж рдкреНрд░реЛрдлрд╛рдЗрд▓ рджрд┐рдЦрд╛рдИ рдЬрд╛рдПрдЧреАред";
+      "♥ आपका रजिस्ट्रेशन सफलतापूर्वक जमा हो गया है! Admin Approval के बाद आपकी प्रोफाइल आगे दिखाई जा सकेगी।";
 
-    profileForm.reset();
+    msg.style.color = "#16834b";
+
     form.reset();
-
-    registrationId = null;
-
-    profileBtn.textContent = "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рд╣реЛ рдЧрдИ";
-
-    profileBtn.disabled = true;
 
   } catch(error) {
 
-    console.error(error);
+    console.error("Registration Error:", error);
 
-    msg.textContent =
-      "рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдирд╣реАрдВ рд╣реБрдИред рдЖрдкрдХрд╛ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рд╕реБрд░рдХреНрд╖рд┐рдд рд╣реИред рджреЛрдмрд╛рд░рд╛ рдХреЛрд╢рд┐рд╢ рдХрд░реЗрдВред";
+    msg.style.color = "#b42335";
 
-    profileBtn.disabled = false;
-    profileBtn.textContent = "тЭдя╕П рдкреНрд░реЛрдлрд╛рдЗрд▓ рд╕реЗрд╡ рдХрд░реЗрдВ";
+    if (error.code === "42501" || error.code === "PGRST301") {
+      msg.textContent =
+        "डेटाबेस की अनुमति में समस्या है। Supabase की RLS Policy जाँचनी होगी।";
+    } else if (error.code === "23505") {
+      msg.textContent =
+        "यह जानकारी पहले से दर्ज है। कृपया मोबाइल नंबर जाँचें।";
+    } else {
+      msg.textContent =
+        "रजिस्ट्रेशन नहीं हो पाया। कृपया दोबारा प्रयास करें। Error: " +
+        (error.message || "Unknown error");
+    }
+
+  } finally {
+
+    btn.disabled = false;
+    btn.textContent = "♥ रजिस्ट्रेशन करें";
 
   }
 
 });
-
-// BACK BUTTON
-
-document.getElementById("backBtn").addEventListener("click", function() {
-
-  step2.classList.add("hidden");
-  step1.classList.remove("hidden");
-
-  msg.textContent =
-    "рдЖрдк рд╡рд╛рдкрд╕ рдмреЗрд╕рд┐рдХ рд░рдЬрд┐рд╕реНрдЯреНрд░реЗрд╢рди рдкрд░ рдЖ рдЧрдП рд╣реИрдВред";
-
-  window.scrollTo(0, 0);
-
-});
-
-// SERVICE WORKER
-
-if ("serviceWorker" in navigator) {
-
-  window.addEventListener("load", () => {
-
-    navigator.serviceWorker.register("./sw.js")
-      .catch(error =>
-        console.log("Service Worker Error:", error)
-      );
-
-  });
-
-}
 
 </script>
 
