@@ -62,6 +62,7 @@ footer{background:#421020;color:#f6e5df;text-align:center;padding:25px 15px;font
 <div class="card">
 <h2 class="section-title">♥ व्यक्तिगत जानकारी</h2>
 <label for="name">पूरा नाम *</label><input id="name" maxlength="80" required placeholder="अपना पूरा नाम लिखें">
+<label for="dob">जन्मतिथि *</label><input id="dob" type="date" required min="1900-01-01">
 <div class="grid"><div><label for="age">उम्र *</label><input id="age" type="number" min="18" max="100" required placeholder="उम्र"></div>
 <div><label for="gender">लिंग *</label><select id="gender" required><option value="">चुनें</option><option value="Male">पुरुष</option><option value="Female">महिला</option><option value="Other">अन्य</option></select></div></div>
 <label for="mobile">मोबाइल नंबर *</label><input id="mobile" type="tel" inputmode="numeric" maxlength="10" required placeholder="10 अंकों का भारतीय नंबर"><div class="small-help">ईमेल OTP सत्यापन पूरा है। मोबाइल नंबर अभी OTP से सत्यापित नहीं होता।</div>
@@ -233,7 +234,15 @@ form.addEventListener("submit",async e=>{
   if(sessionError||!sessionData.session?.user?.id){say(msg,"आपका लॉगिन सत्र समाप्त हो गया है। कृपया दोबारा ईमेल OTP सत्यापित करें।");return}
   const user=sessionData.session.user;
   if(verifiedEmail&&user.email?.toLowerCase()!==verifiedEmail.toLowerCase()){say(msg,"लॉगिन ईमेल बदल गया है। कृपया दोबारा सत्यापन करें।");return}
-  const age=Number(value("age")),mobile=value("mobile");
+  const age=Number(value("age")),mobile=value("mobile"),dob=value("dob");
+  if(!dob){say(msg,"कृपया अपनी जन्मतिथि दर्ज करें।");return}
+  const birthDate=new Date(dob+"T00:00:00");
+  const today=new Date();
+  let calculatedAge=today.getFullYear()-birthDate.getFullYear();
+  const birthdayNotReached=(today.getMonth()<birthDate.getMonth())||(today.getMonth()===birthDate.getMonth()&&today.getDate()<birthDate.getDate());
+  if(birthdayNotReached)calculatedAge--;
+  if(Number.isNaN(birthDate.getTime())||birthDate>today||calculatedAge<18||calculatedAge>100){say(msg,"कृपया सही जन्मतिथि दर्ज करें। यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है।");return}
+  if(calculatedAge!==age){say(msg,"उम्र और जन्मतिथि मेल नहीं खाते। कृपया दोनों सही करें।");return}
   const minAge=getOptionalNumber("preferred_age_min"),maxAge=getOptionalNumber("preferred_age_max");
   if(!Number.isInteger(age)||age<18||age>100){say(msg,"यह सेवा केवल 18 वर्ष या उससे अधिक उम्र के वयस्कों के लिए है।");return}
   if(!/^[6-9]\d{9}$/.test(mobile)){say(msg,"कृपया सही 10 अंकों का भारतीय मोबाइल नंबर डालें।");return}
@@ -248,7 +257,9 @@ form.addEventListener("submit",async e=>{
     if(file)uploadedPath=await uploadPhoto(user.id,file);
     const traits=selected("traits"),interests=selected("interests");
     const registration={
-      name:value("name"),age,gender:value("gender"),mobile,city:value("city"),
+      full_name:value("name"),dob,age,gender:value("gender"),mobile,
+      email:user.email.toLowerCase(),auth_user_id:user.id,
+      city:value("city")||null,district:value("city")||null,
       education:value("education")||null,occupation:value("occupation")||null,
       annual_income:value("annual_income")||null,marital_status:value("marital_status")||null,
       father_occupation:value("father_occupation")==="Other"?value("father_other"):value("father_occupation")||null,
@@ -260,14 +271,26 @@ form.addEventListener("submit",async e=>{
       preferred_education:value("preferred_education")||null,preferred_religion:value("preferred_religion")||null,
       preferred_country:value("preferred_country")||null,preferred_state:value("preferred_state")||null,
       partner_expectations:value("partner_expectations")||null,
-      consent:true,personality_traits:traits,personality_other:traits.includes("अन्य")?(value("traits_other")||null):null,
+      consent:true,consent_at:new Date().toISOString(),
+      personality_traits:traits,personality_other:traits.includes("अन्य")?(value("traits_other")||null):null,
       interests:interests,interests_other:interests.includes("अन्य")?(value("interests_other")||null):null,
       bio_extra:value("bio")||null,
-      ...(uploadedPath?{profile_photo:uploadedPath}:{})
+      ...(uploadedPath?{profile_photo_path:uploadedPath}:{})
     };
-    const {error}=await client.from("registrations").insert(registration);
+    const {data:savedRegistration,error}=await client.from("registrations")
+      .insert(registration).select("id").single();
     if(error)throw error;
-    say(msg,"♥ आपका Registration सफलतापूर्वक जमा हो गया है। आपकी प्रोफाइल Admin Approval के लिए भेज दी गई है।","#16834b");
+
+    // Email notification is deliberately non-blocking for registration success.
+    let emailNoticeSent=false;
+    try{
+      const {error:emailError}=await client.functions.invoke("send-email",{
+        body:{registration_id:savedRegistration.id}
+      });
+      if(emailError)console.error("Admin email notification failed:",emailError);
+      else emailNoticeSent=true;
+    }catch(emailError){console.error("Admin email notification error:",emailError)}
+    say(msg,emailNoticeSent?"♥ आपका Registration सफलतापूर्वक जमा हो गया है। आपकी प्रोफाइल Admin Approval के लिए भेज दी गई है।":"♥ आपका Registration सफलतापूर्वक जमा हो गया है। ईमेल सूचना भेजने में देरी हुई है; आपकी प्रोफाइल सुरक्षित है।","#16834b");
     form.reset();
     document.querySelectorAll(".custom-option").forEach(x=>x.hidden=true);
     $("profile_photo").value="";
